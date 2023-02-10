@@ -16,52 +16,94 @@
     <Filter Include="シェーダー ファイル">
       <UniqueIdentifier>{7d0e7b81-4308-414a-ae59-352b3afeccd0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\base">
+      <UniqueIdentifier>{85f767c9-ac85-478b-8725-ba67886b29fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\base">
+      <UniqueIdentifier>{c8391d35-9503-4b27-b4b0-be01a232c68b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\camera">
+      <UniqueIdentifier>{9046bb8f-813e-433a-9c7b-9082d81b8ba2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\camera">
+      <UniqueIdentifier>{f4eec64d-b95c-4e42-8039-68279b9a23ce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\scene">
+      <UniqueIdentifier>{d1a205ed-10b5-4e28-b0c8-020d2cd2cabd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\scene">
+      <UniqueIdentifier>{6f6d63b1-0f4b-48e0-936c-ebd120c5ac06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\debug">
+      <UniqueIdentifier>{70c6a896-7676-4071-b9f4-d86f3ef3f977}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\debug">
+      <UniqueIdentifier>{492785bc-7fe1-4e17-a2e0-6f139580c7a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\inout">
+      <UniqueIdentifier>{ce2956cd-3ed7-4dcf-bd7f-0a2ba6838e23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\input">
+      <UniqueIdentifier>{05f0c9a6-d16c-44f3-ab06-6c70cd2d327c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\3d">
+      <UniqueIdentifier>{834eaf71-db8a-4065-89ea-46d89fc5d329}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\3d">
+      <UniqueIdentifier>{87acdaaf-ae33-4f24-955a-f686a77a5dae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\collision">
+      <UniqueIdentifier>{fc7e2577-64cd-49a7-bc8b-801c6be2aa20}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\collision">
+      <UniqueIdentifier>{0f2b028e-c7ee-494a-b85e-d852b1de438c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Sprite.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\input\Input.cpp">
+      <Filter>ソース ファイル\inout</Filter>
     </ClCompile>
-    <ClCompile Include="DebugText.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Mesh.cpp">
+      <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Material.cpp">
+      <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
-    <ClCompile Include="Object3d.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Model.cpp">
+      <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
-    <ClCompile Include="WinApp.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Object3d.cpp">
+      <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
-    <ClCompile Include="DirectXCommon.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Sprite.cpp">
+      <Filter>ソース ファイル\3d</Filter>
     </ClCompile>
-    <ClCompile Include="GameScene.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="scene\GameScene.cpp">
+      <Filter>ソース ファイル\scene</Filter>
     </ClCompile>
-    <ClCompile Include="Material.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="base\DirectXCommon.cpp">
+      <Filter>ソース ファイル\base</Filter>
     </ClCompile>
-    <ClCompile Include="Mesh.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="base\WinApp.cpp">
+      <Filter>ソース ファイル\base</Filter>
     </ClCompile>
-    <ClCompile Include="Model.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="camera\Camera.cpp">
+      <Filter>ソース ファイル\camera</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="debug\DebugCamera.cpp">
+      <Filter>ソース ファイル\debug</Filter>
     </ClCompile>
-    <ClCompile Include="DebugCamera.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="debug\DebugText.cpp">
+      <Filter>ソース ファイル\debug</Filter>
     </ClCompile>
-    <ClCompile Include="CollisionPrimitive.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="collision\CollisionPrimitive.cpp">
+      <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
-    <ClCompile Include="Collision.cpp">
-      <Filter>ソース ファイル</Filter>
+    <ClCompile Include="collision\Collision.cpp">
+      <Filter>ソース ファイル\collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -87,47 +129,47 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Sprite.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\input\Input.h">
+      <Filter>ヘッダー ファイル\input</Filter>
     </ClInclude>
-    <ClInclude Include="DebugText.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Sprite.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Mesh.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
-    <ClInclude Include="Object3d.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Material.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
-    <ClInclude Include="WinApp.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Model.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
-    <ClInclude Include="DirectXCommon.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="..\..\..\KamataEngineAL4CG3_v2\KamataEngineAL4CG3_v2\DirectXGame\3d\Object3d.h">
+      <Filter>ヘッダー ファイル\3d</Filter>
     </ClInclude>
-    <ClInclude Include="GameScene.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="debug\DebugCamera.h">
+      <Filter>ヘッダー ファイル\debug</Filter>
     </ClInclude>
-    <ClInclude Include="Material.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="debug\DebugText.h">
+      <Filter>ヘッダー ファイル\debug</Filter>
     </ClInclude>
-    <ClInclude Include="Mesh.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="camera\Camera.h">
+      <Filter>ヘッダー ファイル\camera</Filter>
     </ClInclude>
-    <ClInclude Include="Model.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="base\WinApp.h">
+      <Filter>ヘッダー ファイル\base</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="base\DirectXCommon.h">
+      <Filter>ヘッダー ファイル\base</Filter>
     </ClInclude>
-    <ClInclude Include="DebugCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="scene\GameScene.h">
+      <Filter>ヘッダー ファイル\scene</Filter>
     </ClInclude>
-    <ClInclude Include="CollisionPrimitive.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="collision\CollisionPrimitive.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
-    <ClInclude Include="Collision.h">
-      <Filter>ヘッダー ファイル</Filter>
+    <ClInclude Include="collision\Collision.h">
+      <Filter>ヘッダー ファイル\collision</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
