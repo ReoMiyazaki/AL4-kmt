@@ -54,21 +54,43 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 	// 背景スプライト生成
 	spriteBG = Sprite::Create(1, { 0.0f,0.0f });
 	// 3Dオブジェクト生成
-	objSkydome = Object3d::Create();
-	objGround = Object3d::Create();
-	objFighter = Object3d::Create();
-
+	{
+		objSkydome = Object3d::Create();
+		objGround = Object3d::Create();
+		objFighter = Object3d::Create();
+		objSphere = Object3d::Create();
+		objSphereHit = Object3d::Create();
+		objTriangle = Object3d::Create();
+		objTriangleHit = Object3d::Create();
+	}
 	// テクスチャ2番に読み込み
 	Sprite::LoadTexture(2, L"Resources/texture.png");
 
-	modelSkydome = Model::CreateFromOBJ("skydome");
-	modelGround = Model::CreateFromOBJ("ground");
-	modelFighter = Model::CreateFromOBJ("chr_sword");
-
-	objSkydome->SetModel(modelSkydome);
-	objGround->SetModel(modelGround);
-	objFighter->SetModel(modelFighter);
-
+	// ファイル読み込み
+	{
+		modelSkydome = Model::CreateFromOBJ("skydome");
+		modelGround = Model::CreateFromOBJ("ground");
+		modelFighter = Model::CreateFromOBJ("chr_sword");
+		modelSphere = Model::CreateFromOBJ("sphere1");
+		modelSphereHit = Model::CreateFromOBJ("sphere2");
+		modelTriangle = Model::CreateFromOBJ("Triangle1");
+		modelTriangleHit = Model::CreateFromOBJ("Triangle2");
+	}
+	// モデルと紐付け
+	{
+		objSkydome->SetModel(modelSkydome);
+		objGround->SetModel(modelGround);
+		objFighter->SetModel(modelFighter);
+		objSphere->SetModel(modelSphere);
+		objSphereHit->SetModel(modelSphereHit);
+		objTriangle->SetModel(modelTriangle);
+		objTriangleHit->SetModel(modelTriangleHit);
+	}
+	// モデルの位置を設定
+	{
+		objTriangle->SetPosition({ 1,1,1 });
+		objTriangleHit->SetPosition({ 1,1,1 });
+	}
 	// 当たり判定関係
 	{
 		// 弾の初期値を設定
@@ -81,7 +103,7 @@ void GameScene::Initialize(DirectXCommon* dxCommon, Input* input)
 		triangle.p0 = XMVectorSet(-1.0f, 0, -1.0f, 1);//左手前
 		triangle.p1 = XMVectorSet(-1.0f, 0, +1.0f, 1);//右奥
 		triangle.p2 = XMVectorSet(+1.0f, 0, -1.0f, 1);//右手前
-		triangle.normal = XMVectorSet(0.0f, 1.0f, 0.0f, 1);//上向き
+		triangle.normal = XMVectorSet(0.0f, 1.0f, 0.0f, 0);//上向き
 	}
 }
 
@@ -92,18 +114,27 @@ void GameScene::Update()
 	objSkydome->Update();
 	objGround->Update();
 	objFighter->Update();
+	objSphere->Update();
+	objSphereHit->Update();
+	objTriangle->Update();
+	objTriangleHit->Update();
 
-	XMVECTOR moveX = XMVectorSet(0.01f, 0, 0, 0);
-	XMVECTOR moveY = XMVectorSet(0, 0.01f, 0, 0);
+	XMFLOAT3 position = objSphere->GetPosition();
+
 	// オブジェクト移動
 	if (input->PushKey(DIK_UP) || input->PushKey(DIK_DOWN) || input->PushKey(DIK_RIGHT) || input->PushKey(DIK_LEFT))
 	{
 		// 移動後の座標を計算
-		if (input->PushKey(DIK_RIGHT)) { sphere.center += moveX; }
-		else if (input->PushKey(DIK_LEFT)) { sphere.center -= moveX; }
-		if (input->PushKey(DIK_UP)) { sphere.center += moveY; }
-		else if (input->PushKey(DIK_DOWN)) { sphere.center -= moveY; }
+		if (input->PushKey(DIK_RIGHT)) { position.x += 0.05f; }
+		else if (input->PushKey(DIK_LEFT)) { position.x -= 0.05f; }
+		if (input->PushKey(DIK_UP)) { position.y += 0.05f; }
+		else if (input->PushKey(DIK_DOWN)) { position.y -= 0.05f; }
 	}
+
+	objSphere->SetPosition(position);
+	objSphereHit->SetPosition(position);
+	sphere.center = XMVectorSet(position.x, position.y, position.z, 1);
+
 	// stringstreamで変数の値を埋め込んで整形する
 	std::ostringstream spherestr;
 	spherestr << "Sphere:("
@@ -114,9 +145,9 @@ void GameScene::Update()
 
 	debugText.Print(spherestr.str(), 50, 180, 1.0f);
 
-	XMVECTOR inter;
-	bool hit1 = Collision::CheckSphere2Plane(sphere, plane, &inter);
-	if (hit1)
+	XMVECTOR sphereInter;
+	sphereHit = Collision::CheckSphere2Plane(sphere, plane, &sphereInter);
+	if (sphereHit)
 	{
 		debugText.Print("HIT", 50, 200, 1.0f);
 		// stringstreamをリセットし、交点座標を埋め込む
@@ -124,17 +155,17 @@ void GameScene::Update()
 		spherestr.clear();
 		spherestr << "("
 			<< std::fixed << std::setprecision(2)
-			<< inter.m128_f32[0] << ","
-			<< inter.m128_f32[1] << ","
-			<< inter.m128_f32[2] << ")";
+			<< sphereInter.m128_f32[0] << ","
+			<< sphereInter.m128_f32[1] << ","
+			<< sphereInter.m128_f32[2] << ")";
 
-		//debugText.Print(spherestr.str(), 50, 220, 1.0f);
+		debugText.Print(spherestr.str(), 50, 220, 1.0f);
 	}
 
 	//球と三角形の当たり判定
-	//XMVECTOR inter;
-	bool hit2 = Collision::CheckSphere2Triangle(sphere, triangle, &inter);
-	if (hit2)
+	XMVECTOR triangleInter;
+	triangleHit= Collision::CheckSphere2Triangle(sphere, triangle, &triangleInter);
+	if (triangleHit)
 	{
 		//stringstreamをリセットし、交点座標を埋め込む
 		std::ostringstream spherestr;
@@ -142,10 +173,11 @@ void GameScene::Update()
 		spherestr.clear();
 		spherestr << "("
 			<< std::fixed << std::setprecision(2)
-			<< inter.m128_f32[0] << ","
-			<< inter.m128_f32[1] << ","
-			<< inter.m128_f32[2] << ")";
-		debugText.Print(spherestr.str(), 50, 220, 1.0f);
+			<< triangleInter.m128_f32[0] << ","
+			<< triangleInter.m128_f32[1] << ","
+			<< triangleInter.m128_f32[2] << ")";
+
+		debugText.Print(spherestr.str(), 50, 240, 1.0f);
 	}
 }
 
@@ -177,7 +209,13 @@ void GameScene::Draw()
 	// 3Dオブクジェクトの描画
 	objSkydome->Draw();
 	objGround->Draw();
-	objFighter->Draw();
+	if (sphereHit) { objSphereHit->Draw(); }
+	else { objSphere->Draw(); }
+	
+	if (triangleHit) { objTriangleHit->Draw(); }
+	else { objTriangle->Draw(); }
+
+
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる

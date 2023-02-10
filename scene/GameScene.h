@@ -65,10 +65,18 @@ class GameScene {
 	Model* modelSkydome = nullptr;
 	Model* modelGround = nullptr;
 	Model* modelFighter = nullptr;
+	Model* modelSphere = nullptr;
+	Model* modelSphereHit = nullptr;
+	Model* modelTriangle = nullptr;
+	Model* modelTriangleHit = nullptr;
 
 	Object3d* objSkydome = nullptr;
 	Object3d* objGround = nullptr;
 	Object3d* objFighter = nullptr;
+	Object3d* objSphere = nullptr;
+	Object3d* objSphereHit = nullptr;
+	Object3d* objTriangle = nullptr;
+	Object3d* objTriangleHit = nullptr;
 
 	// 当たり判定 球
 	Sphere sphere;
@@ -76,4 +84,8 @@ class GameScene {
 	Plane plane;
 	// 当たり判定 三角形
 	Triangle triangle;
+
+	// 当たり判定
+	bool sphereHit = false;
+	bool triangleHit = false;
 };
