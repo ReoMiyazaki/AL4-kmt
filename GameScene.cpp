@@ -128,8 +128,24 @@ void GameScene::Update()
 			<< inter.m128_f32[1] << ","
 			<< inter.m128_f32[2] << ")";
 
-		debugText.Print(spherestr.str(), 50, 220, 1.0f);
+		//debugText.Print(spherestr.str(), 50, 220, 1.0f);
+	}
 
+	//球と三角形の当たり判定
+	//XMVECTOR inter;
+	bool hit2 = Collision::CheckSphere2Triangle(sphere, triangle, &inter);
+	if (hit2)
+	{
+		//stringstreamをリセットし、交点座標を埋め込む
+		std::ostringstream spherestr;
+		spherestr.str("");
+		spherestr.clear();
+		spherestr << "("
+			<< std::fixed << std::setprecision(2)
+			<< inter.m128_f32[0] << ","
+			<< inter.m128_f32[1] << ","
+			<< inter.m128_f32[2] << ")";
+		debugText.Print(spherestr.str(), 50, 220, 1.0f);
 	}
 }
 
